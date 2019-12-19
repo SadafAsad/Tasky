@@ -47,6 +47,7 @@ public class DBManager extends SQLiteOpenHelper {
             "alarm TEXT,\n" +
             "done TEXT,\n" +
             "day TEXT, \n" +
+            "email TEXT, \n" +
             "FOREIGN KEY (email) " +
             "REFERENCES users (email) ON DELETE CASCADE ON UPDATE CASCADE )";
 
