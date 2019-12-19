@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log_in);
 
         dbmanager = new DBManager(this);
-        findviews();
+        findViews();
         onClicks();
 
     }
@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    public void findviews(){
+    public void findViews(){
         login = (Button) findViewById(R.id.login);
         signup = (Button) findViewById(R.id.signup);
         email = (EditText) findViewById(R.id.email);
