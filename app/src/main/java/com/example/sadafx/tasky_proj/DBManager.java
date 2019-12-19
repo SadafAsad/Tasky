@@ -36,6 +36,7 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
     private static final String CREAT_USER_TABLE = "CREATE TABLE users ( " +
+            "name TEXT, \n" +
             "password TEXT,\n" +
             "email TEXT PRIMARY KEY)";
 
@@ -65,25 +66,11 @@ public class DBManager extends SQLiteOpenHelper {
         }
     }
 
-    public String[] getUser(String email){
-        String[] user = {"",""};
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM users\n" +
-                "WHERE email = ?", new String[]{email});
-        if (cursor.getCount() == 1){
-            cursor.moveToFirst();
-            user[0]=cursor.getString(cursor.getColumnIndex("password"));
-            user[1]=cursor.getString(cursor.getColumnIndex("email"));
-        }
-        db.close();
-        cursor.close();
-        return user;
-    }
 
     public void onSignupInsert(String name, String email, String password){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO users (name,email,password) \n" +
-                "VALUES (?,?,?)", new String[]{name,email,password});
+        db.execSQL("INSERT INTO users (name,password,email) \n" +
+                "VALUES (?,?,?)", new String[]{name,password,email});
         db.close();
     }
 
