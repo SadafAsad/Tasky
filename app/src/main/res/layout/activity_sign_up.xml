@@ -19,7 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome"
-            android:textColor="@color/four"
+            android:textColor="@color/white"
             android:textStyle="bold"
             android:fontFamily="@font/abel"
             android:textSize="40sp"/>
@@ -27,7 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="do it with Tasky"
-            android:textColor="@color/four"
+            android:textColor="@color/white"
             android:fontFamily="@font/abel"
             android:textSize="15sp"/>
 
@@ -49,7 +49,8 @@
             android:textColorHint="@color/four"
             android:backgroundTint="@color/four"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:textColor="@color/white"/>
         <EditText
             android:id="@+id/email"
             android:layout_width="match_parent"
@@ -59,7 +60,8 @@
             android:backgroundTint="@color/four"
             android:hint="Email"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:textColor="@color/white"/>
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
@@ -69,7 +71,8 @@
             android:backgroundTint="@color/four"
             android:hint="Password"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:layout_marginRight="30dp"
+            android:textColor="@color/white"/>
         <Button
             android:id="@+id/create"
             android:layout_width="match_parent"
