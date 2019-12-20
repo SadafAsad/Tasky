@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/two1">
+    android:background="@color/two1"
+    tools:context=".NextDayFragment">
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,7 +20,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/add_task"
+            android:id="@+id/add_task_0"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="14dp"
@@ -29,16 +31,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:onClick="AddTask"/>
         <ImageView
+            android:id="@+id/add_task_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/add_task"
-            app:layout_constraintBottom_toBottomOf="@id/add_task"
-            app:layout_constraintRight_toRightOf="@id/add_task"
-            app:layout_constraintLeft_toLeftOf="@id/add_task"
+            app:layout_constraintTop_toTopOf="@id/add_task_0"
+            app:layout_constraintBottom_toBottomOf="@id/add_task_0"
+            app:layout_constraintRight_toRightOf="@id/add_task_0"
+            app:layout_constraintLeft_toLeftOf="@id/add_task_0"
             android:src="@drawable/ic_add"
-            android:clickable="true"/>
+            android:clickable="true"
+            android:onClick="AddTask"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
