@@ -44,6 +44,7 @@ public class DBManager extends SQLiteOpenHelper {
             "task_id TEXT PRIMARY KEY,\n" +
             "title TEXT,\n" +
             "context TEXT,\n" +
+            "time TEXT, \n" +
             "alarm TEXT,\n" +
             "done TEXT,\n" +
             "day TEXT, \n" +
@@ -89,11 +90,11 @@ public class DBManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void onNewTask(String taskid, String title, String context,
+    public void onNewTask(String taskid, String title, String context, String time,
                           String alarm, String done, String day, String email){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO tasks (task_id,title,context,alarm,done,day,email)\n" +
-                "VALUES (?,?,?,?,?)", new String[]{taskid,title,context,alarm,done,day,email});
+        db.execSQL("INSERT INTO tasks (task_id,title,context,time,alarm,done,day,email)\n" +
+                "VALUES (?,?,?,?,?,?)", new String[]{taskid,title,context,time,alarm,done,day,email});
         db.close();
     }
 
@@ -104,14 +105,15 @@ public class DBManager extends SQLiteOpenHelper {
         List<String> tasks = new ArrayList<>();
         if ( cursor.moveToFirst() ){
             do {
-                String[] task = {"","","","","","",""};
+                String[] task = {"","","","","","","",""};
                 task[0]=cursor.getString(cursor.getColumnIndex("task_id"));
                 task[1]=cursor.getString(cursor.getColumnIndex("title"));
                 task[2]=cursor.getString(cursor.getColumnIndex("context"));
-                task[3]=cursor.getString(cursor.getColumnIndex("alarm"));
-                task[4]=cursor.getString(cursor.getColumnIndex("done"));
-                task[5]=cursor.getString(cursor.getColumnIndex("day"));
-                task[6]=cursor.getString(cursor.getColumnIndex("email"));
+                task[3]=cursor.getString(cursor.getColumnIndex("time"));
+                task[4]=cursor.getString(cursor.getColumnIndex("alarm"));
+                task[5]=cursor.getString(cursor.getColumnIndex("done"));
+                task[6]=cursor.getString(cursor.getColumnIndex("day"));
+                task[7]=cursor.getString(cursor.getColumnIndex("email"));
                 tasks.add(task.toString());
             } while (cursor.moveToNext());
         }
@@ -127,14 +129,15 @@ public class DBManager extends SQLiteOpenHelper {
         List<String> tasks = new ArrayList<>();
         if ( cursor.moveToFirst() ){
             do {
-                String[] task = {"","","","","","",""};
+                String[] task = {"","","","","","","",""};
                 task[0]=cursor.getString(cursor.getColumnIndex("task_id"));
                 task[1]=cursor.getString(cursor.getColumnIndex("title"));
                 task[2]=cursor.getString(cursor.getColumnIndex("context"));
-                task[3]=cursor.getString(cursor.getColumnIndex("alarm"));
-                task[4]=cursor.getString(cursor.getColumnIndex("done"));
-                task[5]=cursor.getString(cursor.getColumnIndex("day"));
-                task[6]=cursor.getString(cursor.getColumnIndex("email"));
+                task[3]=cursor.getString(cursor.getColumnIndex("time"));
+                task[4]=cursor.getString(cursor.getColumnIndex("alarm"));
+                task[5]=cursor.getString(cursor.getColumnIndex("done"));
+                task[6]=cursor.getString(cursor.getColumnIndex("day"));
+                task[7]=cursor.getString(cursor.getColumnIndex("email"));
                 tasks.add(task.toString());
             } while (cursor.moveToNext());
         }
