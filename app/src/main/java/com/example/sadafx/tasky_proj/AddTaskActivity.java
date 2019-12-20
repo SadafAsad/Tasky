@@ -42,25 +42,25 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
     public void onClicks(){
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dbmanager = new DBManager(getApplicationContext());
-                final String in_title = title.getText().toString();
-                final String in_context = context.getText().toString();
-                //time and alarm ...
-                int id = dbmanager.maxTaskID(variables.loged_in_email);
-                id = id + 1;
-                String str_id = Integer.toString(id);
-
-                dbmanager.onNewTask(str_id,in_title,in_context,time,alarm,"0",day,variables.loged_in_email);
-
-                Toast.makeText(AddTaskActivity.this, "Added",Toast.LENGTH_LONG).show();
-
-                Intent intent = new Intent(AddTaskActivity.this, today_or_next_day.class);
-                startActivity(intent);
-            }
-        });
+//        add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                dbmanager = new DBManager(getApplicationContext());
+//                final String in_title = title.getText().toString();
+//                final String in_context = context.getText().toString();
+//                //time and alarm ...
+//                int id = dbmanager.maxTaskID(variables.loged_in_email);
+//                id = id + 1;
+//                String str_id = Integer.toString(id);
+//
+//                dbmanager.onNewTask(str_id,in_title,in_context,time,alarm,"0",day,variables.loged_in_email);
+//
+//                Toast.makeText(AddTaskActivity.this, "Added",Toast.LENGTH_LONG).show();
+//
+//                Intent intent = new Intent(AddTaskActivity.this, today_or_next_day.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
 }
