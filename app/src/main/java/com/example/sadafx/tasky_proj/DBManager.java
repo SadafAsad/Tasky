@@ -76,6 +76,18 @@ public class DBManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    public int maxTaskID(String email){
+        int i;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT MAX(task_id) FROM tasks\n" +
+                "WHERE email = ?", new String[]{email});
+        cursor.moveToFirst();
+        i = cursor.getInt(0);
+        db.close();
+        cursor.close();
+        return i;
+    }
+
     public void onEditPassword(String email, String password){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("UPDATE users SET password = ?\n" +
