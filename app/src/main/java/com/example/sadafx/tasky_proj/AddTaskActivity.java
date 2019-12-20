@@ -45,7 +45,7 @@ public class AddTaskActivity extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dbmanager = new DBManager(this);
+                dbmanager = new DBManager(getApplicationContext());
                 final String in_title = title.getText().toString();
                 final String in_context = context.getText().toString();
                 //time and alarm ...
