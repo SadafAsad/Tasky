@@ -18,6 +18,7 @@
         </activity>
         <activity android:name=".SignupActivity"/>
         <activity android:name=".MainActivity"/>
+        <activity android:name=".AddTaskActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"
