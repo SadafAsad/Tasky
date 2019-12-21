@@ -76,6 +76,11 @@ public class DBManager extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void deleteTask(String task_id){
+        SQLiteDatabase db = getReadableDatabase();
+        db.delete("tasks","task_id=?",new String[]{task_id});
+    }
+
     public int maxTaskID(String email){
         int i;
         SQLiteDatabase db = getReadableDatabase();
