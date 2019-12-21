@@ -12,12 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TodayFragment extends Fragment {
 
     RecyclerView rv;
-    List<Task> taskList;
+    ArrayList<Task> taskList;
 
     RecyclerView rv2;
     List<Done> doneList;
@@ -33,10 +34,8 @@ public class TodayFragment extends Fragment {
 
         MainActivity mainActivity = (MainActivity) getActivity();
 
-        TaskAdapter adapter = new TaskAdapter(taskList, mainActivity);
-        LinearLayoutManager llm = new LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL, false);
-        rv.setLayoutManager(llm);
-        rv.setAdapter(adapter);
+        addTask();
+        initRecyclerView(view);
 
         DoneAdapter adapter2 = new DoneAdapter(doneList, mainActivity);
         LinearLayoutManager llm2 = new LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL, false);
@@ -68,6 +67,39 @@ public class TodayFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    public void initRecyclerView(View v){
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.to_do_container);
+        TaskAdapter adapter = new TaskAdapter(taskList,getContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    public void addTask(){
+        taskList = new ArrayList<>();
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
     }
 
 }
