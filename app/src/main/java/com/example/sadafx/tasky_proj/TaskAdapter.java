@@ -60,7 +60,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
             }
         });
         holder.title.setText(task_list.get(position).title);
-        holder.context.setText(task_list.get(position).text);
+        holder.context.setText(task_list.get(position).context);
     }
 
     @Override
