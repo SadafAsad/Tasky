@@ -61,6 +61,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
         });
         holder.title.setText(task_list.get(position).title);
         holder.context.setText(task_list.get(position).context);
+        holder.time.setText(task_list.get(position).time);
+        holder.alarm_time.setText(task_list.get(position).alarm);
     }
 
     @Override
@@ -73,12 +75,16 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
         LinearLayout parent_layout;
         TextView title;
         TextView context;
+        TextView time;
+        TextView alarm_time;
 
         public ViewHolder(View itemView){
             super(itemView);
             parent_layout = (LinearLayout) itemView.findViewById(R.id.parent_layout);
             title = (TextView) itemView.findViewById(R.id.title);
             context = (TextView) itemView.findViewById(R.id.context);
+            time = (TextView) itemView.findViewById(R.id.time);
+            alarm_time = (TextView) itemView.findViewById(R.id.alarm_time);
         }
 
     }

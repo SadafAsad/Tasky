@@ -78,28 +78,19 @@ public class TodayFragment extends Fragment {
 
     public void addTask(){
         taskList = new ArrayList<>();
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
+
     }
 
 }
