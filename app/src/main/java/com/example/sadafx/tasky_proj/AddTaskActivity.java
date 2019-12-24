@@ -102,6 +102,13 @@ public class AddTaskActivity extends AppCompatActivity {
                 time_picker_dialog.show();
             }
         });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AddTaskActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }
