@@ -50,16 +50,18 @@
             android:hint="Email"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"/>
+
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_weight="1"
-            android:textColorHint="@color/one"
             android:backgroundTint="@color/one"
             android:hint="Password"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"/>
+            android:inputType="textPassword"
+            android:textColorHint="@color/one" />
         <TextView
             android:id="@+id/forgot_pass"
             android:layout_width="wrap_content"

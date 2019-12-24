@@ -84,8 +84,7 @@ public class DBManager extends SQLiteOpenHelper {
     public int maxTaskID(String email){
         int i;
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT MAX(task_id) FROM tasks\n" +
-                "WHERE email = ?", new String[]{email});
+        Cursor cursor = db.rawQuery("SELECT MAX(task_id) FROM tasks",null);
         cursor.moveToFirst();
         i = cursor.getInt(0);
         db.close();

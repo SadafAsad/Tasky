@@ -4,16 +4,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import java.util.Calendar;
 
@@ -28,13 +31,15 @@ public class MainActivity extends AppCompatActivity {
     Button wed;
     Button thu;
     Button fri;
+    Button logout;
 
     ImageView menu;
 
     Animation openMenu;
     Animation closeMenu;
 
-    FrameLayout menuFrame;
+    LinearLayout menuFrame;
+    LinearLayout notMenu;
 
     int day;
 
@@ -61,8 +66,11 @@ public class MainActivity extends AppCompatActivity {
         thu = (Button) findViewById(R.id.five);
         fri = (Button) findViewById(R.id.six);
 
+        logout = (Button) findViewById(R.id.log_out);
+
         menu = (ImageButton) findViewById(R.id.menu);
-        menuFrame = (FrameLayout) findViewById(R.id.menu_frame);
+        menuFrame = (LinearLayout) findViewById(R.id.menu_frame);
+        notMenu = (LinearLayout) findViewById(R.id.not_menu);
     }
 
     void animationUtils(){
@@ -78,12 +86,23 @@ public class MainActivity extends AppCompatActivity {
                     menuFrame.startAnimation(closeMenu);
                     menuFrame.setVisibility(View.GONE);
                     menu.setScaleY(1);
+                    notMenu.setAlpha(1f);
+                    notMenu.setClickable(true);
                 }
                 else {
                     menuFrame.setVisibility(View.VISIBLE);
                     menuFrame.startAnimation(openMenu);
                     menu.setScaleY(-1);
+                    notMenu.setAlpha(0.1f);
+                    notMenu.setClickable(false);
                 }
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -329,4 +348,5 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 }

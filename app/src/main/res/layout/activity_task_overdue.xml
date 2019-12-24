@@ -21,7 +21,9 @@
             android:layout_height="wrap_content"
             android:text="title"
             android:textColor="@color/colorAccent"
-            android:fontFamily="@font/abel" />
+            android:fontFamily="@font/abel"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
         <TextView
             android:id="@+id/context"
             android:layout_width="wrap_content"
