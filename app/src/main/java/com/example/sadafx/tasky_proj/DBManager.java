@@ -111,7 +111,7 @@ public class DBManager extends SQLiteOpenHelper {
                           String alarm, String done, String day, String email){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO tasks (task_id,title,context,time,alarm,done,day,email)\n" +
-                "VALUES (?,?,?,?,?,?)", new String[]{taskid,title,context,time,alarm,done,day,email});
+                "VALUES (?,?,?,?,?,?,?,?)", new String[]{taskid,title,context,time,alarm,done,day,email});
         db.close();
     }
 
