@@ -29,17 +29,22 @@ public class TodayFragment extends Fragment {
 
     String day;
 
+    Variables variables;
+    DBManager dbmanager;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
         day = getArguments().getString("DAY");
+
+        dbmanager = new DBManager(getContext());
+        taskList = dbmanager.getDayTasks_todo_overdue(variables.loged_in_email,day);
 
         findViews(view);
         onClicks();
 
         MainActivity mainActivity = (MainActivity) getActivity();
 
-        addTask();
         initRecyclerView(view);
 
         DoneAdapter adapter2 = new DoneAdapter(doneList, mainActivity);
@@ -76,23 +81,6 @@ public class TodayFragment extends Fragment {
         TaskAdapter adapter = new TaskAdapter(taskList,getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-
-    public void addTask(){
-        taskList = new ArrayList<>();
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-        taskList.add(new Task("dxwafceferf", "egfregergvsd","00:00","00:00"));
-
     }
 
 }

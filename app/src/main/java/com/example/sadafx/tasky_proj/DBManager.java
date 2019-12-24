@@ -76,9 +76,9 @@ public class DBManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void deleteTask(String task_id){
+    public void deleteTask(String email, String task_id){
         SQLiteDatabase db = getReadableDatabase();
-        db.delete("tasks","task_id=?",new String[]{task_id});
+        db.delete("tasks","email=? AND task_id=?",new String[]{email,task_id});
     }
 
     public int maxTaskID(String email){
@@ -115,23 +115,32 @@ public class DBManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public List<String> getDayTasks_todo_overdue(String email, String day){
+    public ArrayList<Task> getDayTasks_todo_overdue(String email, String day){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM tasks\n" +
                 "WHERE email = ? AND day = ? AND done = ?", new String[]{email,day,"0"});
-        List<String> tasks = new ArrayList<>();
+        ArrayList<Task> tasks = new ArrayList<>();
         if ( cursor.moveToFirst() ){
             do {
-                String[] task = {"","","","","","","",""};
-                task[0]=cursor.getString(cursor.getColumnIndex("task_id"));
-                task[1]=cursor.getString(cursor.getColumnIndex("title"));
-                task[2]=cursor.getString(cursor.getColumnIndex("context"));
-                task[3]=cursor.getString(cursor.getColumnIndex("time"));
-                task[4]=cursor.getString(cursor.getColumnIndex("alarm"));
-                task[5]=cursor.getString(cursor.getColumnIndex("done"));
-                task[6]=cursor.getString(cursor.getColumnIndex("day"));
-                task[7]=cursor.getString(cursor.getColumnIndex("email"));
-                tasks.add(task.toString());
+                tasks.add(new Task(cursor.getString(cursor.getColumnIndex("title")),
+                        cursor.getString(cursor.getColumnIndex("context")),
+                        cursor.getString(cursor.getColumnIndex("time")),
+                        cursor.getString(cursor.getColumnIndex("alarm"))));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return tasks;
+    }
+
+    public ArrayList<Done> getDayTasks_done_0(String email, String day){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM tasks\n" +
+                "WHERE email = ? AND day = ? AND done = ?", new String[]{email,day,"1"});
+        ArrayList<Done> tasks = new ArrayList<>();
+        if ( cursor.moveToFirst() ){
+            do {
+                tasks.add(new Done(cursor.getString(cursor.getColumnIndex("title"))));
             } while (cursor.moveToNext());
         }
         db.close();
