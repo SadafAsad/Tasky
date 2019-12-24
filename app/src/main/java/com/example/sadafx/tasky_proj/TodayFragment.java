@@ -19,7 +19,6 @@ import java.util.List;
 
 public class TodayFragment extends Fragment {
 
-    RecyclerView rv;
     ArrayList<Task> taskList;
 
     RecyclerView rv2;
@@ -56,7 +55,6 @@ public class TodayFragment extends Fragment {
     }
 
     public void findViews(View v){
-        rv = (RecyclerView) v.findViewById(R.id.to_do_container);
         rv2 = (RecyclerView) v.findViewById(R.id.done_container);
         add_task = (ConstraintLayout) v.findViewById(R.id.add_task);
     }

@@ -9,20 +9,33 @@ import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
 
 public class NextDayFragment extends Fragment {
 
+    ArrayList<Task> taskList;
+
     ConstraintLayout add_task;
     String day;
+
+    Variables variables;
+    DBManager dbmanager;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View view = inflater.inflate(R.layout.fragment_next_day, container, false);
 
         day = getArguments().getString("DAY");
 
+        dbmanager = new DBManager(getContext());
+        taskList = dbmanager.getDayTasks_todo_overdue(variables.loged_in_email,day);
+
         findViews(view);
         onClicks();
+
+        initRecyclerView(view);
 
         return view;
     }
@@ -44,6 +57,13 @@ public class NextDayFragment extends Fragment {
                 startActivity(intent);
             }
         });
+    }
+
+    public void initRecyclerView(View v){
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.to_do_container);
+        TaskAdapter adapter = new TaskAdapter(taskList,getContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 
 }
