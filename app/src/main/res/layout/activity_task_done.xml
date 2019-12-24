@@ -13,17 +13,16 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical">
 
-        <Button
+        <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Shopping"
-            android:textAllCaps="false"
             android:textSize="15sp"
             android:fontFamily="@font/abel"
             android:textColor="#ffffff"
-            android:paddingLeft="20dp"
-            android:background="#00FFFFFF"
-            android:layout_margin="10dp" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"/>
 
         <Button
             android:layout_width="90dp"

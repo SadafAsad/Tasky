@@ -20,9 +20,7 @@ import java.util.List;
 public class TodayFragment extends Fragment {
 
     ArrayList<Task> taskList;
-
-    RecyclerView rv2;
-    List<Done> doneList;
+    ArrayList<Done> doneList;
 
     ConstraintLayout add_task;
 
@@ -42,20 +40,15 @@ public class TodayFragment extends Fragment {
         findViews(view);
         onClicks();
 
-        MainActivity mainActivity = (MainActivity) getActivity();
+        initRecyclerView_todo(view);
 
-        initRecyclerView(view);
-
-        DoneAdapter adapter2 = new DoneAdapter(doneList, mainActivity);
-        LinearLayoutManager llm2 = new LinearLayoutManager(mainActivity, LinearLayoutManager.VERTICAL, false);
-        rv2.setLayoutManager(llm2);
-        rv2.setAdapter(adapter2);
+        addDone();
+        initRecyclerView_done(view);
 
         return view;
     }
 
     public void findViews(View v){
-        rv2 = (RecyclerView) v.findViewById(R.id.done_container);
         add_task = (ConstraintLayout) v.findViewById(R.id.add_task);
     }
 
@@ -74,11 +67,38 @@ public class TodayFragment extends Fragment {
         });
     }
 
-    public void initRecyclerView(View v){
+    public void initRecyclerView_todo(View v){
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.to_do_container);
         TaskAdapter adapter = new TaskAdapter(taskList,getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    public void initRecyclerView_done(View v){
+        RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.done_container);
+        DoneAdapter adapter = new DoneAdapter(doneList,getContext());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    public void addDone(){
+        doneList = new ArrayList<>();
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
+        doneList.add(new Done("dxwafceferf"));
     }
 
 }

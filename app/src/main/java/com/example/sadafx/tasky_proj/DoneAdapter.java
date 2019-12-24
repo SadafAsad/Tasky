@@ -53,25 +53,5 @@ public class DoneAdapter extends RecyclerView.Adapter<DoneAdapter.ViewHolder> {
 
     }
 
-    public void addDone(){
-        doneList = new ArrayList<>();
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-    }
-
 }
 
