@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,13 +44,13 @@ public class OverdueAdapter extends RecyclerView.Adapter<OverdueAdapter.ViewHold
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        FrameLayout parent_layout;
+        LinearLayout parent_layout;
         TextView title;
         TextView context;
 
         public ViewHolder(View itemView){
             super(itemView);
-            parent_layout = (FrameLayout) itemView.findViewById(R.id.parent_layout);
+            parent_layout = (LinearLayout) itemView.findViewById(R.id.parent_layout);
             title = (TextView) itemView.findViewById(R.id.title);
             context = (TextView) itemView.findViewById(R.id.context);
         }
