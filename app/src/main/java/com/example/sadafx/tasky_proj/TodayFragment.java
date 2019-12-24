@@ -2,12 +2,9 @@ package com.example.sadafx.tasky_proj;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.BlockedNumberContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -15,7 +12,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class TodayFragment extends Fragment {
 
@@ -35,7 +31,7 @@ public class TodayFragment extends Fragment {
         day = getArguments().getString("DAY");
 
         dbmanager = new DBManager(getContext());
-        taskList = dbmanager.getDayTasks_todo_overdue(variables.loged_in_email,day);
+        taskList = dbmanager.getDayTasks_todo(variables.loged_in_email,day);
 //        doneList = dbmanager.getDayTasks_done(variables.loged_in_email,day);
 
         findViews(view);

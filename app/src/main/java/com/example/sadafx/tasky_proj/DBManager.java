@@ -115,7 +115,7 @@ public class DBManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public ArrayList<Task> getDayTasks_todo_overdue(String email, String day){
+    public ArrayList<Task> getDayTasks_todo(String email, String day){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM tasks\n" +
                 "WHERE email = ? AND day = ? AND done = ?", new String[]{email,day,"0"});
@@ -141,6 +141,22 @@ public class DBManager extends SQLiteOpenHelper {
         if ( cursor.moveToFirst() ){
             do {
                 tasks.add(new Done(cursor.getString(cursor.getColumnIndex("title"))));
+            } while (cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return tasks;
+    }
+
+    public ArrayList<Overdue> getDayTasks_overdue(String email, String day){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM tasks\n" +
+                "WHERE email = ? AND day = ? AND done = ?", new String[]{email,day,"0"});
+        ArrayList<Overdue> tasks = new ArrayList<>();
+        if ( cursor.moveToFirst() ){
+            do {
+                tasks.add(new Overdue(cursor.getString(cursor.getColumnIndex("title")),
+                        cursor.getString(cursor.getColumnIndex("context"))));
             } while (cursor.moveToNext());
         }
         db.close();

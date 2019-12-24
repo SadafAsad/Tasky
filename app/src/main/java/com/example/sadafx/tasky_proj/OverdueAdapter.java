@@ -12,46 +12,48 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class DoneAdapter extends RecyclerView.Adapter<DoneAdapter.ViewHolder> {
+public class OverdueAdapter extends RecyclerView.Adapter<OverdueAdapter.ViewHolder> {
 
-    private ArrayList<Done> doneList;
+    private ArrayList<Overdue> overdueList;
     private Context mContext;
 
-    public DoneAdapter(ArrayList<Done> doneList, Context mContext) {
-        this.doneList = doneList;
+    public OverdueAdapter(ArrayList<Overdue> overdueList, Context mContext) {
+        this.overdueList = overdueList;
         this.mContext = mContext;
     }
 
     @NonNull
     @Override
-    public DoneAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_task_done, parent, false);
-        DoneAdapter.ViewHolder holder = new DoneAdapter.ViewHolder(view);
+    public OverdueAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_task_overdue, parent, false);
+        OverdueAdapter.ViewHolder holder = new OverdueAdapter.ViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DoneAdapter.ViewHolder holder, int position) {
-        holder.title.setText(doneList.get(position).title);
+    public void onBindViewHolder(@NonNull OverdueAdapter.ViewHolder holder, int position) {
+        holder.title.setText(overdueList.get(position).title);
+        holder.context.setText(overdueList.get(position).context);
     }
 
     @Override
     public int getItemCount() {
-        return doneList.size();
+        return overdueList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         FrameLayout parent_layout;
         TextView title;
+        TextView context;
 
         public ViewHolder(View itemView){
             super(itemView);
             parent_layout = (FrameLayout) itemView.findViewById(R.id.parent_layout);
             title = (TextView) itemView.findViewById(R.id.title);
+            context = (TextView) itemView.findViewById(R.id.context);
         }
 
     }
 
 }
-
