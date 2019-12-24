@@ -2,6 +2,7 @@ package com.example.sadafx.tasky_proj;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.BlockedNumberContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +27,12 @@ public class TodayFragment extends Fragment {
 
     ConstraintLayout add_task;
 
+    String day;
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
-        String day = getArguments().getString("DAY");
+        day = getArguments().getString("DAY");
 
         findViews(view);
         onClicks();
@@ -57,7 +60,12 @@ public class TodayFragment extends Fragment {
         add_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("DAY",day);
+
                 Intent intent = new Intent(getActivity(), AddTaskActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });

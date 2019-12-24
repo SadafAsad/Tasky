@@ -30,10 +30,14 @@ public class AddTaskActivity extends AppCompatActivity {
 
     TimePickerDialog time_picker_dialog;
 
+    String day;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+        day = getIntent().getExtras().getString("DAY");
 
         findViews();
         onClicks();
@@ -52,28 +56,28 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
     public void onClicks(){
-//        add.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                dbmanager = new DBManager(getApplicationContext());
-//
-//                final String in_title = title.getText().toString();
-//                final String in_context = context.getText().toString();
-//                final String in_time = choose_time.getText().toString();
-//                final String in_alarm = choose_alarm.getText().toString();
-//
-//                int id = dbmanager.maxTaskID(variables.loged_in_email);
-//                id = id + 1;
-//                String str_id = Integer.toString(id);
-//
-//                dbmanager.onNewTask(str_id,in_title,in_context,in_time,in_alarm,"0",day,variables.loged_in_email);
-//
-//                Toast.makeText(AddTaskActivity.this, "Added",Toast.LENGTH_LONG).show();
-//
-//                Intent intent = new Intent(AddTaskActivity.this, today_or_next_day.class);
-//                startActivity(intent);
-//            }
-//        });
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbmanager = new DBManager(getApplicationContext());
+
+                final String in_title = title.getText().toString();
+                final String in_context = context.getText().toString();
+                final String in_time = choose_time.getText().toString();
+                final String in_alarm = choose_alarm.getText().toString();
+
+                int id = dbmanager.maxTaskID(variables.loged_in_email);
+                id = id + 1;
+                String str_id = Integer.toString(id);
+
+                dbmanager.onNewTask(str_id,in_title,in_context,in_time,in_alarm,"0",day,variables.loged_in_email);
+
+                Toast.makeText(AddTaskActivity.this, "Added",Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(AddTaskActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
         set_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

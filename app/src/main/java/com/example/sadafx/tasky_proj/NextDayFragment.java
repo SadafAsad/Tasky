@@ -40,6 +40,7 @@ public class NextDayFragment extends Fragment {
                 bundle.putString("DAY",day);
 
                 Intent intent = new Intent(getActivity(), AddTaskActivity.class);
+                intent.putExtras(bundle);
                 startActivity(intent);
             }
         });
