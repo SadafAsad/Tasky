@@ -133,7 +133,7 @@ public class DBManager extends SQLiteOpenHelper {
         return tasks;
     }
 
-    public ArrayList<Done> getDayTasks_done_0(String email, String day){
+    public ArrayList<Done> getDayTasks_done(String email, String day){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM tasks\n" +
                 "WHERE email = ? AND day = ? AND done = ?", new String[]{email,day,"1"});
@@ -141,30 +141,6 @@ public class DBManager extends SQLiteOpenHelper {
         if ( cursor.moveToFirst() ){
             do {
                 tasks.add(new Done(cursor.getString(cursor.getColumnIndex("title"))));
-            } while (cursor.moveToNext());
-        }
-        db.close();
-        cursor.close();
-        return tasks;
-    }
-
-    public List<String> getDayTasks_done(String email, String day){
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM tasks\n" +
-                "WHERE email = ? AND day = ? AND done = ?", new String[]{email,day,"1"});
-        List<String> tasks = new ArrayList<>();
-        if ( cursor.moveToFirst() ){
-            do {
-                String[] task = {"","","","","","","",""};
-                task[0]=cursor.getString(cursor.getColumnIndex("task_id"));
-                task[1]=cursor.getString(cursor.getColumnIndex("title"));
-                task[2]=cursor.getString(cursor.getColumnIndex("context"));
-                task[3]=cursor.getString(cursor.getColumnIndex("time"));
-                task[4]=cursor.getString(cursor.getColumnIndex("alarm"));
-                task[5]=cursor.getString(cursor.getColumnIndex("done"));
-                task[6]=cursor.getString(cursor.getColumnIndex("day"));
-                task[7]=cursor.getString(cursor.getColumnIndex("email"));
-                tasks.add(task.toString());
             } while (cursor.moveToNext());
         }
         db.close();
