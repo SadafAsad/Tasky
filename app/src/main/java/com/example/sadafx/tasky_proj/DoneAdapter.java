@@ -1,37 +1,38 @@
 package com.example.sadafx.tasky_proj;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class DoneAdapter extends RecyclerView.Adapter<DoneAdapter.DoneViewHolder> {
+public class DoneAdapter extends RecyclerView.Adapter<DoneAdapter.ViewHolder> {
 
-    List<Done> doneList;
-    MainActivity mainActivity;
+    private ArrayList<Done> doneList;
+    private Context mContext;
 
-    public DoneAdapter(List<Done> doneList, MainActivity mainActivity){
-        this.doneList = doneList;
-        this.mainActivity = mainActivity;
-        addDone();
+    public DoneAdapter(ArrayList<Done> task_list, Context mContext) {
+        this.doneList = task_list;
+        this.mContext = mContext;
     }
 
     @NonNull
     @Override
-    public DoneAdapter.DoneViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_task_done, parent, false);
-        DoneViewHolder pvh = new DoneViewHolder(v);
-        return pvh;
+    public DoneAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_task_done, parent, false);
+        DoneAdapter.ViewHolder holder = new DoneAdapter.ViewHolder(view);
+        return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull DoneAdapter.DoneViewHolder holder, int position) {
-
+    public void onBindViewHolder(@NonNull DoneAdapter.ViewHolder holder, int position) {
+        holder.title.setText(doneList.get(position).title);
     }
 
     @Override
@@ -39,13 +40,17 @@ public class DoneAdapter extends RecyclerView.Adapter<DoneAdapter.DoneViewHolder
         return doneList.size();
     }
 
-    public static class DoneViewHolder extends RecyclerView.ViewHolder{
-        DoneViewHolder(View itemView) { super(itemView); }
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
-    @Override
-    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
-        super.onAttachedToRecyclerView(recyclerView);
+        FrameLayout parent_layout;
+        TextView title;
+
+        public ViewHolder(View itemView){
+            super(itemView);
+            parent_layout = (FrameLayout) itemView.findViewById(R.id.parent_layout);
+            title = (TextView) itemView.findViewById(R.id.title);
+        }
+
     }
 
     public void addDone(){
