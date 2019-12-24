@@ -94,7 +94,7 @@ public class AddTaskActivity extends AppCompatActivity {
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         choose_alarm.setText(hourOfDay + ":" + minute);
                     }
-                }, 0, 0, true);
+                }, 00, 00, true);
                 time_picker_dialog.show();
             }
         });

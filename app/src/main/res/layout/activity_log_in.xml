@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="@drawable/simple_button_background_color_one"
-            android:textColor="@color/four"
+            android:textColor="@color/white"
             android:text="login"
             android:fontFamily="@font/abel"
             android:textSize="20sp"
@@ -95,7 +95,7 @@
             android:layout_gravity="bottom"
             android:background="@color/one"
             android:text="Create account"
-            android:textColor="@color/four"
+            android:textColor="@color/white"
             android:fontFamily="@font/abel"
             android:textAllCaps="false"
             android:textSize="20sp"/>
