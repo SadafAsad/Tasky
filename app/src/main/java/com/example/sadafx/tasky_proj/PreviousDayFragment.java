@@ -11,6 +11,9 @@ public class PreviousDayFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View view = inflater.inflate(R.layout.fragment_previous_day, container, false);
+
+        String day = getArguments().getString("DAY");
+
         return view;
     }
 

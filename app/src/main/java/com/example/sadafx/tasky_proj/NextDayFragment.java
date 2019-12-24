@@ -18,6 +18,8 @@ public class NextDayFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View view = inflater.inflate(R.layout.fragment_next_day, container, false);
 
+        String day = getArguments().getString("DAY");
+
         findViews(view);
         onClicks();
 

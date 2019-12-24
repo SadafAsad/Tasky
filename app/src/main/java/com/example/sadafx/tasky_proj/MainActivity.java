@@ -1,6 +1,7 @@
 package com.example.sadafx.tasky_proj;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Color;
@@ -107,66 +108,82 @@ public class MainActivity extends AppCompatActivity {
         fri.setTextColor(Color.parseColor("#000000"));
     }
 
-    void past(){
+    void past(Bundle b){
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.container, new PreviousDayFragment());
+        Fragment fragment = new PreviousDayFragment();
+        fragment.setArguments(b);
+        transaction.add(R.id.container, fragment);
         transaction.commit();
     }
 
-    void today(){
+    void today(Bundle b){
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.container, new TodayFragment());
+        Fragment fragment = new TodayFragment();
+        fragment.setArguments(b);
+        transaction.add(R.id.container, fragment);
         transaction.commit();
     }
 
-    void future(){
+    void future(Bundle b){
         transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.container, new NextDayFragment());
+        Fragment fragment = new NextDayFragment();
+        fragment.setArguments(b);
+        transaction.add(R.id.container, fragment);
         transaction.commit();
     }
 
     void firstShowToday(){
+
+        Bundle bundle = new Bundle();
+
         if (day == 7){
             sat.setText("Today");
             sat.setTextColor(Color.parseColor("#ffffff"));
             sat.setBackgroundResource(R.drawable.button_day_clicked);
-            today();
+            bundle.putString("DAY","sat");
+            today(bundle);
         }
         else if (day == 1){
             sun.setText("Today");
             sun.setTextColor(Color.parseColor("#ffffff"));
             sun.setBackgroundResource(R.drawable.button_day_clicked);
-            today();
+            bundle.putString("DAY","sun");
+            today(bundle);
         }
         else if (day == 2){
             mon.setText("Today");
             mon.setTextColor(Color.parseColor("#ffffff"));
             mon.setBackgroundResource(R.drawable.button_day_clicked);
-            today();
+            bundle.putString("DAY","mon");
+            today(bundle);
         }
         else if (day == 3){
             tue.setText("Today");
             tue.setTextColor(Color.parseColor("#ffffff"));
             tue.setBackgroundResource(R.drawable.button_day_clicked);
-            today();
+            bundle.putString("DAY","tue");
+            today(bundle);
         }
         else if (day == 4){
             wed.setText("Today");
             wed.setTextColor(Color.parseColor("#ffffff"));
             wed.setBackgroundResource(R.drawable.button_day_clicked);
-            today();
+            bundle.putString("DAY","wed");
+            today(bundle);
         }
         else if (day == 5){
             thu.setText("Today");
             thu.setTextColor(Color.parseColor("#ffffff"));
             thu.setBackgroundResource(R.drawable.button_day_clicked);
-            today();
+            bundle.putString("DAY","thu");
+            today(bundle);
         }
         else {
             fri.setText("Today");
             fri.setTextColor(Color.parseColor("#ffffff"));
             fri.setBackgroundResource(R.drawable.button_day_clicked);
-            today();
+            bundle.putString("DAY","fri");
+            today(bundle);
         }
     }
 
@@ -175,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
         Button b = (Button)v;
         String id = b.getResources().getResourceEntryName(v.getId());
 
+        Bundle bundle = new Bundle();
+
         if (id.equals("seven")){
 
             colorDayButtonsToDefault();
@@ -182,11 +201,13 @@ public class MainActivity extends AppCompatActivity {
             sat.setBackgroundResource(R.drawable.button_day_clicked);
             sat.setTextColor(Color.parseColor("#ffffff"));
 
+            bundle.putString("DAY","sat");
+
             if (day == 7){
-                today();
+                today(bundle);
             }
             else {
-                past();
+                past(bundle);
                 Log.d("3", "past okay");
             }
 
@@ -198,14 +219,16 @@ public class MainActivity extends AppCompatActivity {
             sun.setBackgroundResource(R.drawable.button_day_clicked);
             sun.setTextColor(Color.parseColor("#ffffff"));
 
+            bundle.putString("DAY","sun");
+
             if (day == 7){
-                future();
+                future(bundle);
             }
             else if (day == 1){
-                today();
+                today(bundle);
             }
             else {
-                past();
+                past(bundle);
             }
         }
         else if (id.equals("two")){
@@ -215,14 +238,16 @@ public class MainActivity extends AppCompatActivity {
             mon.setBackgroundResource(R.drawable.button_day_clicked);
             mon.setTextColor(Color.parseColor("#ffffff"));
 
+            bundle.putString("DAY","mon");
+
             if (day == 7 || day == 1){
-                future();
+                future(bundle);
             }
             else if (day == 2){
-                today();
+                today(bundle);
             }
             else {
-                past();
+                past(bundle);
             }
 
         }
@@ -233,14 +258,16 @@ public class MainActivity extends AppCompatActivity {
             tue.setBackgroundResource(R.drawable.button_day_clicked);
             tue.setTextColor(Color.parseColor("#ffffff"));
 
+            bundle.putString("DAY","tue");
+
             if (day == 7 || day == 1 || day == 2){
-                future();
+                future(bundle);
             }
             else if (day == 3){
-                today();
+                today(bundle);
             }
             else {
-                past();
+                past(bundle);
             }
 
         }
@@ -251,14 +278,16 @@ public class MainActivity extends AppCompatActivity {
             wed.setBackgroundResource(R.drawable.button_day_clicked);
             wed.setTextColor(Color.parseColor("#ffffff"));
 
+            bundle.putString("DAY","wed");
+
             if (day == 5 || day == 6){
-                past();
+                past(bundle);
             }
             else if (day == 4){
-                today();
+                today(bundle);
             }
             else {
-                future();
+                future(bundle);
             }
 
         }
@@ -269,14 +298,16 @@ public class MainActivity extends AppCompatActivity {
             thu.setBackgroundResource(R.drawable.button_day_clicked);
             thu.setTextColor(Color.parseColor("#ffffff"));
 
+            bundle.putString("DAY","thu");
+
             if (day == 6){
-                past();
+                past(bundle);
             }
             else if (day == 5){
-                today();
+                today(bundle);
             }
             else {
-                future();
+                future(bundle);
             }
 
         }
@@ -287,11 +318,13 @@ public class MainActivity extends AppCompatActivity {
             fri.setBackgroundResource(R.drawable.button_day_clicked);
             fri.setTextColor(Color.parseColor("#ffffff"));
 
+            bundle.putString("DAY","fri");
+
             if (day == 6){
-                today();
+                today(bundle);
             }
             else {
-                future();
+                future(bundle);
             }
 
         }
