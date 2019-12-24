@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,8 +24,7 @@ public class TodayFragment extends Fragment {
     RecyclerView rv2;
     List<Done> doneList;
 
-    ImageView add_task_0;
-    ImageView add_task_1;
+    ConstraintLayout add_task;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstance){
         View view = inflater.inflate(R.layout.fragment_today, container, false);
@@ -50,19 +50,11 @@ public class TodayFragment extends Fragment {
     public void findViews(View v){
         rv = (RecyclerView) v.findViewById(R.id.to_do_container);
         rv2 = (RecyclerView) v.findViewById(R.id.done_container);
-        add_task_0 = (ImageView) v.findViewById(R.id.add_task_0);
-        add_task_1 = (ImageView) v.findViewById(R.id.add_task_1);
+        add_task = (ConstraintLayout) v.findViewById(R.id.add_task);
     }
 
     public void onClicks(){
-        add_task_0.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), AddTaskActivity.class);
-                startActivity(intent);
-            }
-        });
-        add_task_1.setOnClickListener(new View.OnClickListener() {
+        add_task.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), AddTaskActivity.class);
