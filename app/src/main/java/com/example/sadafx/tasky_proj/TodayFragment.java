@@ -84,18 +84,6 @@ public class TodayFragment extends Fragment {
         doneList.add(new Done("dxwafceferf"));
         doneList.add(new Done("dxwafceferf"));
         doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
     }
 
 }
