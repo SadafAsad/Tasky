@@ -81,6 +81,12 @@ public class DBManager extends SQLiteOpenHelper {
         db.delete("tasks","email=? AND task_id=?",new String[]{email,task_id});
     }
 
+    public void doneTask(String email, String task_id){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE tasks SET done = 1 WHERE email = ?", new String[]{email});
+        db.close();
+    }
+
     public int maxTaskID(String email){
         int i;
         SQLiteDatabase db = getReadableDatabase();
@@ -121,7 +127,8 @@ public class DBManager extends SQLiteOpenHelper {
         ArrayList<Task> tasks = new ArrayList<>();
         if ( cursor.moveToFirst() ){
             do {
-                tasks.add(new Task(cursor.getString(cursor.getColumnIndex("title")),
+                tasks.add(new Task(cursor.getString(cursor.getColumnIndex("task_id")),
+                        cursor.getString(cursor.getColumnIndex("title")),
                         cursor.getString(cursor.getColumnIndex("context")),
                         cursor.getString(cursor.getColumnIndex("time")),
                         cursor.getString(cursor.getColumnIndex("alarm"))));

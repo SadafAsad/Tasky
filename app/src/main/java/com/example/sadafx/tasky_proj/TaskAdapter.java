@@ -3,6 +3,7 @@ package com.example.sadafx.tasky_proj;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
     private ArrayList<Task> task_list;
     private Context mContext;
 
+    Variables variables;
+    DBManager dbmanager;
+
     public TaskAdapter(ArrayList<Task> task_list, Context mContext) {
         this.task_list = task_list;
         this.mContext = mContext;
@@ -31,14 +35,18 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_task_card_alarm_set, parent, false);
         ViewHolder holder = new ViewHolder(view);
+
+        dbmanager = new DBManager(mContext);
+
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.parent_layout.setOnTouchListener(new OnSwipeTouchListener(mContext){
             public void onSwipeRight() {
-                Toast.makeText(mContext, "right", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "Done", Toast.LENGTH_LONG).show();
+                dbmanager.doneTask(variables.loged_in_email, task_list.get(position).id);
             }
             public void onSwipeLeft() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -46,7 +54,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // Continue with delete operation
+                                dbmanager.deleteTask(variables.loged_in_email, task_list.get(position).id);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

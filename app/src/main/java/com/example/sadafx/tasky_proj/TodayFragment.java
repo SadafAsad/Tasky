@@ -32,14 +32,13 @@ public class TodayFragment extends Fragment {
 
         dbmanager = new DBManager(getContext());
         taskList = dbmanager.getDayTasks_todo(variables.loged_in_email,day);
-//        doneList = dbmanager.getDayTasks_done(variables.loged_in_email,day);
+        doneList = dbmanager.getDayTasks_done(variables.loged_in_email,day);
 
         findViews(view);
         onClicks();
 
         initRecyclerView_todo(view);
 
-        addDone();
         initRecyclerView_done(view);
 
         return view;
@@ -76,14 +75,6 @@ public class TodayFragment extends Fragment {
         DoneAdapter adapter = new DoneAdapter(doneList,getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-
-    public void addDone(){
-        doneList = new ArrayList<>();
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
     }
 
 }
