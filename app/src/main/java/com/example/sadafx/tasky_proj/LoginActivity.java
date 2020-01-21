@@ -52,7 +52,11 @@ public class LoginActivity extends AppCompatActivity {
                         .setCallback(new FutureCallback<JsonObject>() {
                             @Override
                             public void onCompleted(Exception e, JsonObject result) {
-
+                                if (result!=null && result.has("access")){
+                                    String token = String.valueOf(result.get("access"))
+                                } else {
+                                    Toast.makeText(mContext, "Try again", Toast.LENGTH_LONG).show();
+                                }
                             }
                         });
 
