@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     Variables variables = new Variables();
     String in_username;
     String in_password;
+    String token;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +70,9 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
                         if (result!=null && result.has("access")){
-                            String token = String.valueOf(result.get("access"));
+                            token = String.valueOf(result.get("access"));
                             getUser(mContext, token);
+                            dbmanager.updateLastToken(token);
                         } else {
                             Toast.makeText(mContext, "User not found", Toast.LENGTH_LONG).show();
                         }

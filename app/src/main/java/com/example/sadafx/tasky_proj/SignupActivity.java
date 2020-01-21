@@ -38,10 +38,12 @@ public class SignupActivity extends AppCompatActivity {
                 String in_last_name = last_name.getText().toString();
                 String in_email = email.getText().toString();
                 String in_password = password.getText().toString();
-                String username= (in_first_name+in_last_name).toLowerCase();
+                String username = (in_first_name+in_last_name).toLowerCase();
+//                in chize, alakiye !!!!!
+                String in_token = "";
 
                 variables.logged_in_email = in_email;
-                dbmanager.onSignupInsert(in_first_name,in_last_name,username,in_email,in_password);
+                dbmanager.onSignupInsert(in_token,in_first_name,in_last_name,username,in_email,in_password);
 
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 startActivity(intent);

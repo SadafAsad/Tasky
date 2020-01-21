@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -35,8 +36,8 @@ public class DBManager extends SQLiteOpenHelper {
         db.execSQL(CREATE_TOKEN_TABLE);
     }
 
-    private static final String CREATE_TOKEN_TABLE = "CREATE TABLE token ( " +
-            "token TEXT)";
+    private static final String CREATE_TOKEN_TABLE = "CREATE TABLE utilities ( " +
+            "last_token TEXT)";
 
     private static final String CREATE_USER_TABLE = "CREATE TABLE users ( " +
             "token TEXT, \n" +
@@ -60,39 +61,47 @@ public class DBManager extends SQLiteOpenHelper {
 
     public String getLastToken(){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT token FROM token", new String[]{});
+        Cursor cursor = db.rawQuery("SELECT * FROM utilities", new String[]{});
         String token;
         if ( cursor.moveToFirst() ){
-            token = cursor.getString(cursor.getColumnIndex("token"));
+            token = cursor.getString(cursor.getColumnIndex("last_token"));
         } else {
-            token = null;
+            token = "";
         }
         db.close();
         cursor.close();
         return token;
     }
 
-    public boolean findUser(String token){
+    public void updateLastToken(String token){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE utilities SET last_token = ? ", new String[]{token});
+        db.close();
+    }
+
+    public  ArrayList<String> getUser(String token){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users\n" +
                 "WHERE token = ?", new String[]{token});
-        if ( cursor.getCount() == 1 ){
-            cursor.close();
-            db.close();
-            return true;
+        ArrayList<String> user = new ArrayList<>();
+        if ( cursor.moveToFirst() ){
+            user.add(cursor.getString(cursor.getColumnIndex("email")));
+            user.add(cursor.getString(cursor.getColumnIndex("first_name")));
+            user.add(cursor.getString(cursor.getColumnIndex("last_name")));
         }
-        else {
-            cursor.close();
-            db.close();
-            return false;
+        else{
+            user = null;
         }
+        db.close();
+        cursor.close();
+        return user;
     }
 
 
-    public void onSignupInsert(String first_name, String last_name, String username, String email, String password){
+    public void onSignupInsert(String token, String first_name, String last_name, String username, String email, String password){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO users (first_name,last_name,username,password,email) \n" +
-                "VALUES (?,?,?,?,?)", new String[]{first_name,last_name,username,password,email});
+        db.execSQL("INSERT INTO users (token,first_name,last_name,username,password,email) \n" +
+                "VALUES (?,?,?,?,?,?)", new String[]{token,first_name,last_name,username,password,email});
         db.close();
     }
 
