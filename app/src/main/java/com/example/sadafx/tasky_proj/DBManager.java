@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class DBManager extends SQLiteOpenHelper {
 
@@ -31,16 +30,20 @@ public class DBManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREAT_USER_TABLE);
-        db.execSQL(CREAT_TASK_TABLE);
+        db.execSQL(CREATE_USER_TABLE);
+        db.execSQL(CREATE_TASK_TABLE);
+        db.execSQL(CREATE_TOKEN_TABLE);
     }
 
-    private static final String CREAT_USER_TABLE = "CREATE TABLE users ( " +
+    private static final String CREATE_TOKEN_TABLE = "CREATE TABLE token ( " +
+            "token TEXT)";
+
+    private static final String CREATE_USER_TABLE = "CREATE TABLE users ( " +
             "name TEXT, \n" +
             "password TEXT,\n" +
             "email TEXT PRIMARY KEY)";
 
-    private static final String CREAT_TASK_TABLE = "CREATE TABLE tasks ( " +
+    private static final String CREATE_TASK_TABLE = "CREATE TABLE tasks ( " +
             "task_id TEXT PRIMARY KEY,\n" +
             "title TEXT,\n" +
             "context TEXT,\n" +
