@@ -12,7 +12,8 @@ public class SignupActivity extends AppCompatActivity {
 
     private Button create;
     private Button login;
-    private EditText name;
+    private EditText first_name;
+    private EditText last_name;
     private EditText email;
     private EditText password;
     DBManager dbmanager;
@@ -33,12 +34,14 @@ public class SignupActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String in_name = name.getText().toString();
+                String in_first_name = first_name.getText().toString();
+                String in_last_name = last_name.getText().toString();
                 String in_email = email.getText().toString();
                 String in_password = password.getText().toString();
+                String username= (in_first_name+in_last_name).toLowerCase();
 
                 variables.logged_in_email = in_email;
-                dbmanager.onSignupInsert(in_name,in_email,in_password);
+                dbmanager.onSignupInsert(in_first_name,in_last_name,username,in_email,in_password);
 
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                 startActivity(intent);
@@ -57,7 +60,8 @@ public class SignupActivity extends AppCompatActivity {
     public void findViews(){
         create = (Button) findViewById(R.id.create);
         login = (Button) findViewById(R.id.login);
-        name = (EditText) findViewById(R.id.first_name);
+        first_name = (EditText) findViewById(R.id.first_name);
+        last_name = (EditText) findViewById(R.id.last_name);
         email = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
     }

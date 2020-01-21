@@ -40,7 +40,9 @@ public class DBManager extends SQLiteOpenHelper {
 
     private static final String CREATE_USER_TABLE = "CREATE TABLE users ( " +
             "token TEXT, \n" +
-            "name TEXT, \n" +
+            "first_name TEXT, \n" +
+            "last_name TEXT, \n" +
+            "username TEXT, \n" +
             "password TEXT,\n" +
             "email TEXT PRIMARY KEY)";
 
@@ -87,10 +89,10 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
 
-    public void onSignupInsert(String name, String email, String password){
+    public void onSignupInsert(String first_name, String last_name, String username, String email, String password){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO users (name,password,email) \n" +
-                "VALUES (?,?,?)", new String[]{name,password,email});
+        db.execSQL("INSERT INTO users (first_name,last_name,username,password,email) \n" +
+                "VALUES (?,?,?,?,?)", new String[]{first_name,last_name,username,password,email});
         db.close();
     }
 
