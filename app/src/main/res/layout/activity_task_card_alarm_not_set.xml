@@ -62,11 +62,19 @@
         </RelativeLayout>
 
         <Button
+            android:id="@+id/forward"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:background="@drawable/ic_reply_black"
             android:scaleX="-1" />
+        <Button
+            android:id="@+id/camera"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_toLeftOf="@+id/forward"
+            android:background="@drawable/ic_photo_camera_black"
+            android:layout_marginRight="4dp"/>
 
     </RelativeLayout>
 

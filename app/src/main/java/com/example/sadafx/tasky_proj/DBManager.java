@@ -62,6 +62,7 @@ public class DBManager extends SQLiteOpenHelper {
     public String getLastToken(){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM utilities", new String[]{});
+        Log.i("cursor ", String.valueOf(cursor.moveToFirst()));
         String token;
         if ( cursor.moveToFirst() ){
             token = cursor.getString(cursor.getColumnIndex("last_token"));
@@ -88,9 +89,6 @@ public class DBManager extends SQLiteOpenHelper {
             user.add(cursor.getString(cursor.getColumnIndex("email")));
             user.add(cursor.getString(cursor.getColumnIndex("first_name")));
             user.add(cursor.getString(cursor.getColumnIndex("last_name")));
-        }
-        else{
-            user = null;
         }
         db.close();
         cursor.close();

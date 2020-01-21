@@ -71,8 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onCompleted(Exception e, JsonObject result) {
                         if (result!=null && result.has("access")){
                             token = String.valueOf(result.get("access"));
-                            getUser(mContext, token);
                             dbmanager.updateLastToken(token);
+                            getUser(mContext, token);
                         } else {
                             Toast.makeText(mContext, "User not found", Toast.LENGTH_LONG).show();
                         }
@@ -93,6 +93,11 @@ public class LoginActivity extends AppCompatActivity {
                         variables.first_name = String.valueOf(result.get("first_name"));
                         variables.last_name = String.valueOf(result.get("last_name"));
                         variables.logged_in_email = String.valueOf(result.get("email"));
+                        String username = String.valueOf(result.get("username"));
+                        String password = String.valueOf(result.get("password"));
+
+                        dbmanager.onSignupInsert(token,variables.first_name,variables.last_name,username,variables.logged_in_email,password);
+
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);
                     }

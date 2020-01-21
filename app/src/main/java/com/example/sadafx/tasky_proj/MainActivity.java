@@ -13,16 +13,20 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
     FragmentTransaction transaction;
+
+    TextView full_name;
 
     Button sat;
     Button sun;
@@ -43,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
     int day;
 
+    Variables variables;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,9 +61,11 @@ public class MainActivity extends AppCompatActivity {
         animationUtils();
         firstShowToday();
         onClicks();
+
     }
 
     void findViews(){
+        full_name = (TextView) findViewById(R.id.full_name);
         sat = (Button) findViewById(R.id.seven);
         sun = (Button) findViewById(R.id.one);
         mon = (Button) findViewById(R.id.two);
@@ -88,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                     menu.setScaleY(1);
                     notMenu.setAlpha(1f);
                     notMenu.setClickable(true);
+                    full_name.setText("");
                 }
                 else {
                     menuFrame.setVisibility(View.VISIBLE);
@@ -95,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     menu.setScaleY(-1);
                     notMenu.setAlpha(0.1f);
                     notMenu.setClickable(false);
+                    full_name.setText(variables.first_name.replaceAll("^\"|\"$","") + " " + variables.last_name.replaceAll("^\"|\"$",""));
                 }
             }
         });
