@@ -39,6 +39,7 @@ public class DBManager extends SQLiteOpenHelper {
             "token TEXT)";
 
     private static final String CREATE_USER_TABLE = "CREATE TABLE users ( " +
+            "token TEXT, \n" +
             "name TEXT, \n" +
             "password TEXT,\n" +
             "email TEXT PRIMARY KEY)";
@@ -69,10 +70,10 @@ public class DBManager extends SQLiteOpenHelper {
         return token;
     }
 
-    public boolean findUser(String email, String password){
+    public boolean findUser(String token){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users\n" +
-                "WHERE email = ? AND password = ?", new String[]{email,password});
+                "WHERE token = ?", new String[]{token});
         if ( cursor.getCount() == 1 ){
             cursor.close();
             db.close();

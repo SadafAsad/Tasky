@@ -3,12 +3,10 @@ package com.example.sadafx.tasky_proj;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,7 +44,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
         holder.parent_layout.setOnTouchListener(new OnSwipeTouchListener(mContext){
             public void onSwipeRight() {
                 Toast.makeText(mContext, "Done", Toast.LENGTH_LONG).show();
-                dbmanager.doneTask(variables.loged_in_email, task_list.get(position).id);
+                dbmanager.doneTask(variables.logged_in_email, task_list.get(position).id);
             }
             public void onSwipeLeft() {
                 AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
@@ -54,7 +52,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder>{
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                dbmanager.deleteTask(variables.loged_in_email, task_list.get(position).id);
+                                dbmanager.deleteTask(variables.logged_in_email, task_list.get(position).id);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

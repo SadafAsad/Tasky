@@ -37,7 +37,7 @@ public class SignupActivity extends AppCompatActivity {
                 String in_email = email.getText().toString();
                 String in_password = password.getText().toString();
 
-                variables.loged_in_email = in_email;
+                variables.logged_in_email = in_email;
                 dbmanager.onSignupInsert(in_name,in_email,in_password);
 
                 Intent intent = new Intent(SignupActivity.this, MainActivity.class);
@@ -57,8 +57,8 @@ public class SignupActivity extends AppCompatActivity {
     public void findViews(){
         create = (Button) findViewById(R.id.create);
         login = (Button) findViewById(R.id.login);
-        name = (EditText) findViewById(R.id.name);
-        email = (EditText) findViewById(R.id.email);
+        name = (EditText) findViewById(R.id.first_name);
+        email = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
     }
 

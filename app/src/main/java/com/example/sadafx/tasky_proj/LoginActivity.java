@@ -3,7 +3,6 @@ package com.example.sadafx.tasky_proj;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,6 +22,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     DBManager dbmanager;
     Variables variables = new Variables();
+    String in_username;
+    String in_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,36 +40,11 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String in_email = email.getText().toString();
-                String in_password = password.getText().toString();
+                in_username = email.getText().toString();
+                in_password = password.getText().toString();
 
-                JsonObject json = new JsonObject();
-                json.addProperty("username", in_email);
-                json.addProperty("password", in_password);
-                Ion.with(mContext)
-                        .load("http://192.241.136.152:3000/api/token/")
-                        .setJsonObjectBody(json)
-                        .asJsonObject()
-                        .setCallback(new FutureCallback<JsonObject>() {
-                            @Override
-                            public void onCompleted(Exception e, JsonObject result) {
-                                if (result!=null && result.has("access")){
-                                    String token = String.valueOf(result.get("access"))
-                                } else {
-                                    Toast.makeText(mContext, "Try again", Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
+                getUsersToken(mContext, in_username, in_password);
 
-//                boolean flag = dbmanager.findUser(in_email,in_password);
-//                if ( flag ){
-//                    variables.loged_in_email = in_email;
-//                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                    startActivity(intent);
-//                }
-//                else {
-//                    Toast.makeText(LoginActivity.this, "user not find",Toast.LENGTH_LONG).show();
-//                }
             }
         });
 
@@ -81,10 +57,50 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public void getUsersToken(Context mContext, String username, String password){
+        JsonObject json = new JsonObject();
+        json.addProperty("username", username);
+        json.addProperty("password", password);
+        Ion.with(mContext)
+                .load("http://192.241.136.152:3000/api/token/")
+                .setJsonObjectBody(json)
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        if (result!=null && result.has("access")){
+                            String token = String.valueOf(result.get("access"));
+                            getUser(mContext, token);
+                        } else {
+                            Toast.makeText(mContext, "User not found", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+    }
+
+    public void getUser(Context mContext, String token){
+        JsonObject json = new JsonObject();
+        json.addProperty("Authorization", "Bearer "+token);
+        Ion.with(mContext)
+                .load("http://192.241.136.152:3000/api/user/")
+                .setHeader("Authorization", "Bearer "+token.replaceAll("^\"|\"$",""))
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+                        variables.first_name = String.valueOf(result.get("first_name"));
+                        variables.last_name = String.valueOf(result.get("last_name"));
+                        variables.logged_in_email = String.valueOf(result.get("email"));
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                    }
+                });
+    }
+
     public void findViews(){
         login = (Button) findViewById(R.id.login);
         signup = (Button) findViewById(R.id.signup);
-        email = (EditText) findViewById(R.id.email);
+        email = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
     }
 

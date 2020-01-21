@@ -27,8 +27,8 @@ public class PreviousDayFragment extends Fragment {
         day = getArguments().getString("DAY");
 
         dbmanager = new DBManager(getContext());
-//        doneList = dbmanager.getDayTasks_done(variables.loged_in_email,day);
-        overdueList = dbmanager.getDayTasks_overdue(variables.loged_in_email,day);
+//        doneList = dbmanager.getDayTasks_done(variables.logged_in_email,day);
+        overdueList = dbmanager.getDayTasks_overdue(variables.logged_in_email,day);
 
         initRecyclerView_overdue(view);
 

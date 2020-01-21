@@ -31,8 +31,8 @@ public class TodayFragment extends Fragment {
         day = getArguments().getString("DAY");
 
         dbmanager = new DBManager(getContext());
-        taskList = dbmanager.getDayTasks_todo(variables.loged_in_email,day);
-        doneList = dbmanager.getDayTasks_done(variables.loged_in_email,day);
+        taskList = dbmanager.getDayTasks_todo(variables.logged_in_email,day);
+        doneList = dbmanager.getDayTasks_done(variables.logged_in_email,day);
 
         findViews(view);
         onClicks();

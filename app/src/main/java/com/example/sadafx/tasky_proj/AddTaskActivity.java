@@ -66,11 +66,11 @@ public class AddTaskActivity extends AppCompatActivity {
                 final String in_time = choose_time.getText().toString();
                 final String in_alarm = choose_alarm.getText().toString();
 
-                int id = dbmanager.maxTaskID(variables.loged_in_email);
+                int id = dbmanager.maxTaskID(variables.logged_in_email);
                 id = id + 1;
                 String str_id = Integer.toString(id);
 
-                dbmanager.onNewTask(str_id,in_title,in_context,in_time,in_alarm,"0",day,variables.loged_in_email);
+                dbmanager.onNewTask(str_id,in_title,in_context,in_time,in_alarm,"0",day,variables.logged_in_email);
 
                 Toast.makeText(AddTaskActivity.this, "Added",Toast.LENGTH_LONG).show();
 
