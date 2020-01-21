@@ -55,6 +55,20 @@ public class DBManager extends SQLiteOpenHelper {
             "FOREIGN KEY (email) " +
             "REFERENCES users (email) ON DELETE CASCADE ON UPDATE CASCADE )";
 
+    public String getLastToken(){
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT token FROM token", new String[]{});
+        String token;
+        if ( cursor.moveToFirst() ){
+            token = cursor.getString(cursor.getColumnIndex("token"));
+        } else {
+            token = null;
+        }
+        db.close();
+        cursor.close();
+        return token;
+    }
+
     public boolean findUser(String email, String password){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users\n" +
