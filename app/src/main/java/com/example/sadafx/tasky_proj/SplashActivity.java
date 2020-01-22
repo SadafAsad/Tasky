@@ -25,8 +25,9 @@ public class SplashActivity extends AppCompatActivity {
 
         dbmanager = new DBManager(this);
         String last_token = dbmanager.getLastToken();
+        Log.i("last_token ", last_token);
 
-        if (last_token.matches("")) {
+        if (last_token.equals("")) {
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
         }

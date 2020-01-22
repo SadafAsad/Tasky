@@ -18,10 +18,10 @@ public class LoginActivity extends AppCompatActivity {
 
     private Button login;
     private Button signup;
-    private EditText email;
+    private EditText username;
     private EditText password;
     DBManager dbmanager;
-    Variables variables = new Variables();
+    Variables variables;
     String in_username;
     String in_password;
     String token;
@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in_username = email.getText().toString();
+                in_username = username.getText().toString();
                 in_password = password.getText().toString();
 
                 getUsersToken(mContext, in_username, in_password);
@@ -81,8 +81,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void getUser(Context mContext, String token){
-        JsonObject json = new JsonObject();
-        json.addProperty("Authorization", "Bearer "+token);
         Ion.with(mContext)
                 .load("http://192.241.136.152:3000/api/user/")
                 .setHeader("Authorization", "Bearer "+token.replaceAll("^\"|\"$",""))
@@ -107,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
     public void findViews(){
         login = (Button) findViewById(R.id.login);
         signup = (Button) findViewById(R.id.signup);
-        email = (EditText) findViewById(R.id.username);
+        username = (EditText) findViewById(R.id.username);
         password = (EditText) findViewById(R.id.password);
     }
 
