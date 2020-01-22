@@ -14,6 +14,8 @@ import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
 import com.koushikdutta.ion.Ion;
 
+import java.util.ArrayList;
+
 public class LoginActivity extends AppCompatActivity {
 
     private Button login;
@@ -88,13 +90,25 @@ public class LoginActivity extends AppCompatActivity {
                 .setCallback(new FutureCallback<JsonObject>() {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
-                        variables.first_name = String.valueOf(result.get("first_name"));
-                        variables.last_name = String.valueOf(result.get("last_name"));
-                        variables.logged_in_email = String.valueOf(result.get("email"));
-                        String username = String.valueOf(result.get("username"));
-                        String password = String.valueOf(result.get("password"));
 
-                        dbmanager.onSignupInsert(token,variables.first_name,variables.last_name,username,variables.logged_in_email,password);
+                        ArrayList<String> user = dbmanager.getUser(token);
+
+                        if(user==null){
+                            variables.first_name = String.valueOf(result.get("first_name"));
+                            variables.last_name = String.valueOf(result.get("last_name"));
+                            variables.logged_in_email = String.valueOf(result.get("email"));
+                            String username = String.valueOf(result.get("username"));
+                            String password = String.valueOf(result.get("password"));
+
+                            dbmanager.onSignupInsert(token,variables.first_name,variables.last_name,username,variables.logged_in_email,password);
+                        }
+                        else {
+                            variables.logged_in_email = user.get(0);
+                            variables.first_name = user.get(1);
+                            variables.last_name = user.get(2);
+                            String username = String.valueOf(result.get("username"));
+                            String password = String.valueOf(result.get("password"));
+                        }
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(intent);

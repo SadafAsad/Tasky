@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.gson.JsonObject;
 import com.koushikdutta.async.future.FutureCallback;
@@ -25,7 +26,6 @@ public class SplashActivity extends AppCompatActivity {
 
         dbmanager = new DBManager(this);
         String last_token = dbmanager.getLastToken();
-        Log.i("last_token ", last_token);
 
         if (last_token.equals("")) {
             Intent intent = new Intent(SplashActivity.this, LoginActivity.class);

@@ -34,6 +34,8 @@ public class DBManager extends SQLiteOpenHelper {
         db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_TASK_TABLE);
         db.execSQL(CREATE_TOKEN_TABLE);
+
+        db.execSQL("INSERT INTO utilities (last_token) \n" + "VALUES (?)", new String[]{""});
     }
 
     private static final String CREATE_TOKEN_TABLE = "CREATE TABLE utilities ( " +
@@ -62,12 +64,8 @@ public class DBManager extends SQLiteOpenHelper {
     public String getLastToken(){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM utilities", new String[]{});
-        String token;
-        if ( cursor.moveToFirst() ){
-            token = cursor.getString(cursor.getColumnIndex("last_token"));
-        } else {
-            token = "";
-        }
+        cursor.moveToFirst();
+        String token = cursor.getString((cursor.getColumnIndex("last_token")));
         db.close();
         cursor.close();
         return token;
@@ -88,6 +86,11 @@ public class DBManager extends SQLiteOpenHelper {
             user.add(cursor.getString(cursor.getColumnIndex("email")));
             user.add(cursor.getString(cursor.getColumnIndex("first_name")));
             user.add(cursor.getString(cursor.getColumnIndex("last_name")));
+            user.add(cursor.getString(cursor.getColumnIndex("username")));
+            user.add(cursor.getString(cursor.getColumnIndex("last_name")));
+        }
+        else{
+            user = null;
         }
         db.close();
         cursor.close();
