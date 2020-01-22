@@ -67,7 +67,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 final String in_time = choose_time.getText().toString();
                 final String in_alarm = choose_alarm.getText().toString();
 
-                int id = dbmanager.maxTaskID(variables.logged_in_email);
+                int id = dbmanager.maxTaskID();
                 id = id + 1;
                 String str_id = Integer.toString(id);
 

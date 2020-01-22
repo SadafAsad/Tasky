@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                             String username = String.valueOf(result.get("username"));
                             String password = String.valueOf(result.get("password"));
 
-                            dbmanager.onSignupInsert(token,variables.first_name,variables.last_name,username,email,password);
+                            dbmanager.onSignupInsert(variables.first_name,variables.last_name,username,email,password);
                         }
                         else {
                             variables.logged_in_email = user.get(0);

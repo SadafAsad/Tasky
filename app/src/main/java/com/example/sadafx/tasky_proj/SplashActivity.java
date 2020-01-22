@@ -33,8 +33,6 @@ public class SplashActivity extends AppCompatActivity {
         }
         else{
             getUser(this, last_token);
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-            startActivity(intent);
         }
 
     }
@@ -48,6 +46,7 @@ public class SplashActivity extends AppCompatActivity {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
 
+                        Log.i("splash result ", String.valueOf(result));
                         String email = String.valueOf((result.get("email")));
                         ArrayList<String> user = dbmanager.getUser(email);
 
@@ -55,6 +54,9 @@ public class SplashActivity extends AppCompatActivity {
                         Log.i("splash email ", variables.logged_in_email);
                         variables.first_name = user.get(1);
                         variables.last_name = user.get(2);
+
+                        Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                        startActivity(intent);
 
                     }
                 });

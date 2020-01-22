@@ -42,7 +42,6 @@ public class DBManager extends SQLiteOpenHelper {
             "last_token TEXT)";
 
     private static final String CREATE_USER_TABLE = "CREATE TABLE users ( " +
-            "token TEXT, \n" +
             "first_name TEXT, \n" +
             "last_name TEXT, \n" +
             "username TEXT, \n" +
@@ -96,10 +95,10 @@ public class DBManager extends SQLiteOpenHelper {
     }
 
 
-    public void onSignupInsert(String token, String first_name, String last_name, String username, String email, String password){
+    public void onSignupInsert(String first_name, String last_name, String username, String email, String password){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("INSERT INTO users (token,first_name,last_name,username,password,email) \n" +
-                "VALUES (?,?,?,?,?,?)", new String[]{token,first_name,last_name,username,password,email});
+        db.execSQL("INSERT INTO users (first_name,last_name,username,password,email) \n" +
+                "VALUES (?,?,?,?,?)", new String[]{first_name,last_name,username,password,email});
         db.close();
     }
 
@@ -110,11 +109,11 @@ public class DBManager extends SQLiteOpenHelper {
 
     public void doneTask(String email, String task_id){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("UPDATE tasks SET done = 1 WHERE email = ?", new String[]{email});
+        db.execSQL("UPDATE tasks SET done = 1 WHERE email = ? AND task_id = ?", new String[]{email, task_id});
         db.close();
     }
 
-    public int maxTaskID(String email){
+    public int maxTaskID(){
         int i;
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT MAX(task_id) FROM tasks",null);
