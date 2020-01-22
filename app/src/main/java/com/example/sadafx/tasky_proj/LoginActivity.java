@@ -3,6 +3,7 @@ package com.example.sadafx.tasky_proj;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +25,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     DBManager dbmanager;
     Variables variables;
-    String in_username;
-    String in_password;
     String token;
 
     @Override
@@ -43,8 +42,8 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                in_username = username.getText().toString();
-                in_password = password.getText().toString();
+                String in_username = username.getText().toString();
+                String in_password = password.getText().toString();
 
                 getUsersToken(mContext, in_username, in_password);
 
@@ -91,16 +90,17 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onCompleted(Exception e, JsonObject result) {
 
-                        ArrayList<String> user = dbmanager.getUser(token);
+                        String email = String.valueOf((result.get("email")));
+                        ArrayList<String> user = dbmanager.getUser(email);
 
                         if(user==null){
+                            variables.logged_in_email = email;
                             variables.first_name = String.valueOf(result.get("first_name"));
                             variables.last_name = String.valueOf(result.get("last_name"));
-                            variables.logged_in_email = String.valueOf(result.get("email"));
                             String username = String.valueOf(result.get("username"));
                             String password = String.valueOf(result.get("password"));
 
-                            dbmanager.onSignupInsert(token,variables.first_name,variables.last_name,username,variables.logged_in_email,password);
+                            dbmanager.onSignupInsert(token,variables.first_name,variables.last_name,username,email,password);
                         }
                         else {
                             variables.logged_in_email = user.get(0);

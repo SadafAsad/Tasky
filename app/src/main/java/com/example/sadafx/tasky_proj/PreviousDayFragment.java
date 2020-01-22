@@ -27,12 +27,11 @@ public class PreviousDayFragment extends Fragment {
         day = getArguments().getString("DAY");
 
         dbmanager = new DBManager(getContext());
-//        doneList = dbmanager.getDayTasks_done(variables.logged_in_email,day);
+        doneList = dbmanager.getDayTasks_done(variables.logged_in_email,day);
         overdueList = dbmanager.getDayTasks_overdue(variables.logged_in_email,day);
 
         initRecyclerView_overdue(view);
 
-        addDone();
         initRecyclerView_done(view);
 
         return view;
@@ -50,13 +49,6 @@ public class PreviousDayFragment extends Fragment {
         OverdueAdapter adapter = new OverdueAdapter(overdueList,getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-
-    public void addDone(){
-        doneList = new ArrayList<>();
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
-        doneList.add(new Done("dxwafceferf"));
     }
 
 }

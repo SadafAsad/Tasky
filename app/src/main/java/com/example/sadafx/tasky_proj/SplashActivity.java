@@ -32,14 +32,32 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            ArrayList<String> user = dbmanager.getUser(last_token);
-            variables.logged_in_email = user.get(0);
-            variables.first_name = user.get(1);
-            variables.last_name = user.get(2);
+            getUser(this, last_token);
             Intent intent = new Intent(SplashActivity.this, MainActivity.class);
             startActivity(intent);
         }
 
+    }
+
+    public void getUser(Context mContext, String token){
+        Ion.with(mContext)
+                .load("http://192.241.136.152:3000/api/user/")
+                .setHeader("Authorization", "Bearer "+token.replaceAll("^\"|\"$",""))
+                .asJsonObject()
+                .setCallback(new FutureCallback<JsonObject>() {
+                    @Override
+                    public void onCompleted(Exception e, JsonObject result) {
+
+                        String email = String.valueOf((result.get("email")));
+                        ArrayList<String> user = dbmanager.getUser(email);
+
+                        variables.logged_in_email = user.get(0);
+                        Log.i("email ", variables.logged_in_email);
+                        variables.first_name = user.get(1);
+                        variables.last_name = user.get(2);
+
+                    }
+                });
     }
 
 }

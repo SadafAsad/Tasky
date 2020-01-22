@@ -77,10 +77,10 @@ public class DBManager extends SQLiteOpenHelper {
         db.close();
     }
 
-    public  ArrayList<String> getUser(String token){
+    public  ArrayList<String> getUser(String email){
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery("SELECT * FROM users\n" +
-                "WHERE token = ?", new String[]{token});
+                "WHERE email = ?", new String[]{email});
         ArrayList<String> user = new ArrayList<>();
         if ( cursor.moveToFirst() ){
             user.add(cursor.getString(cursor.getColumnIndex("email")));
