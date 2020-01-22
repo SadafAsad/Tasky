@@ -31,7 +31,6 @@ public class PreviousDayFragment extends Fragment {
         overdueList = dbmanager.getDayTasks_overdue(variables.logged_in_email,day);
 
         initRecyclerView_overdue(view);
-
         initRecyclerView_done(view);
 
         return view;

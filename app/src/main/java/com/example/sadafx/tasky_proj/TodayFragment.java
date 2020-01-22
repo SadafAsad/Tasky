@@ -2,6 +2,7 @@ package com.example.sadafx.tasky_proj;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,7 @@ public class TodayFragment extends Fragment {
         day = getArguments().getString("DAY");
 
         dbmanager = new DBManager(getContext());
+        Log.i("today fragment email ", variables.logged_in_email);
         taskList = dbmanager.getDayTasks_todo(variables.logged_in_email,day);
         doneList = dbmanager.getDayTasks_done(variables.logged_in_email,day);
 
@@ -38,7 +40,6 @@ public class TodayFragment extends Fragment {
         onClicks();
 
         initRecyclerView_todo(view);
-
         initRecyclerView_done(view);
 
         return view;

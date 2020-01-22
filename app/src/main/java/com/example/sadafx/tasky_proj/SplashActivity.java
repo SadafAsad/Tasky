@@ -52,7 +52,7 @@ public class SplashActivity extends AppCompatActivity {
                         ArrayList<String> user = dbmanager.getUser(email);
 
                         variables.logged_in_email = user.get(0);
-                        Log.i("email ", variables.logged_in_email);
+                        Log.i("splash email ", variables.logged_in_email);
                         variables.first_name = user.get(1);
                         variables.last_name = user.get(2);
 

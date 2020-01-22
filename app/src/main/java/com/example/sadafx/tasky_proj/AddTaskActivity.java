@@ -3,6 +3,7 @@ package com.example.sadafx.tasky_proj;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -70,6 +71,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 id = id + 1;
                 String str_id = Integer.toString(id);
 
+                Log.i("add task email ", variables.logged_in_email);
                 dbmanager.onNewTask(str_id,in_title,in_context,in_time,in_alarm,"0",day,variables.logged_in_email);
 
                 Toast.makeText(AddTaskActivity.this, "Added",Toast.LENGTH_LONG).show();
