@@ -106,8 +106,6 @@ public class LoginActivity extends AppCompatActivity {
                             variables.logged_in_email = user.get(0);
                             variables.first_name = user.get(1);
                             variables.last_name = user.get(2);
-                            String username = String.valueOf(result.get("username"));
-                            String password = String.valueOf(result.get("password"));
                         }
 
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);

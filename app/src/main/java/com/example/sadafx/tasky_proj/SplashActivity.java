@@ -32,7 +32,6 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            Log.i("correct ", String.valueOf(1));
             ArrayList<String> user = dbmanager.getUser(last_token);
             variables.logged_in_email = user.get(0);
             variables.first_name = user.get(1);

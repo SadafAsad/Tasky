@@ -86,8 +86,6 @@ public class DBManager extends SQLiteOpenHelper {
             user.add(cursor.getString(cursor.getColumnIndex("email")));
             user.add(cursor.getString(cursor.getColumnIndex("first_name")));
             user.add(cursor.getString(cursor.getColumnIndex("last_name")));
-            user.add(cursor.getString(cursor.getColumnIndex("username")));
-            user.add(cursor.getString(cursor.getColumnIndex("last_name")));
         }
         else{
             user = null;
