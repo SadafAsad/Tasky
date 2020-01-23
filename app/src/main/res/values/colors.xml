@@ -12,4 +12,7 @@
     <color name="three1">#8cc9cf</color>
     <color name="two1">#323642</color>
     <color name="white">#ffffff</color>
+
+    <color name="progress_outer_color">@color/colorPrimary</color>
+    <color name="progress_inner_color">@color/colorAccent</color>
 </resources>
